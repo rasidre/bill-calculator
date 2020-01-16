@@ -44,11 +44,14 @@ addElement(calculatorContainer, result, "result", "Result: ");
 
 calculateButton.addEventListener("click", function() {
   let taxValue = taxInput.value / 100;
-  let billValue = billTotalInput.value; 
+  let billValue = billTotalInput.value;
   let billTotal = billValue * (1 + taxValue);
   let resultAfterComma = billTotal.toString().split(".")[1];
   let resultBeforeComma = billTotal.toString().split(".")[0];
-  resultAfterModifying = resultBeforeComma + "." + resultAfterComma.slice(0,2);
-  
+  let resultAfterModifying;
+  resultAfterComma
+    ? (resultAfterModifying = resultBeforeComma + "." + resultAfterComma.slice(0, 2))
+    : (resultAfterModifying = billTotal);
+
   result.innerText = "Result: " + resultAfterModifying + " €";
 });
